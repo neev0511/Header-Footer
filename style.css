@@ -198,22 +198,8 @@ main{
   margin-bottom: 10px;
 }
 /*Responsive Code for NAVBAR*/
-@media only screen and (max-width: 1190px) {
-  .submenu .submenu .submenu {
-    left: -100%;
-    top: 0.5em;
-  }
-  .submenu {
-    min-width: 16em;
-  }
-}
-@media only screen and (max-width: 940px) {
-  .menu li a {
-    font-size: 1rem;
-  }
-}
 
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 2000px) {
   header {
     padding: 1.5em 2em;
   }
