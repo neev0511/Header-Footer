@@ -1,311 +1,274 @@
-:root {
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:300,600');
 
-  --main-colour: #e70146;
-  --text-if-hovered: #e70146;
-  --background-if-hovered: #1c2022;
-  --text-colour: #fff;
-  --nav-colour: var(--main-colour);
-  --footer-colour: #011c39;
-  --colour-for-footer: #fff;
-  --socials-colour: #364a62;
+:root {
+  --background: red;
 }
-*,
-*::after,
-*::before {
-  box-sizing: inherit;
-  margin: 0;
-  padding: 0;
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
+
 body {
-  font-family: Cursive;
-  font-size: 1rem;
+	margin: 0;
+  padding: 0;
+	font-family: cursive;
+	font-weight: 400;
 }
-/*NAVBAR Code*/
+
+/* navigation styles start here */
+
 header {
-  background: var(--nav-colour);
-  padding-left: 1.5em;
-  position: sticky;
+  background: var(--background);
+  text-align: center;
+  position: fixed;
+  z-index: 999;
+  width: 100%;
+}
+
+/* changed this from the tutorial video to
+   allow it to gain focus, making it tabbable */
+.nav-toggle {
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
+}
+
+.nav-toggle:focus ~ .nav-toggle-label {
+  outline: 3px solid rgba(lightblue, .75);
+}
+
+.nav-toggle-label {
+  position: absolute;
   top: 0;
-}
-.branding-logo {
-  color: var(--text-colour);
-  font-size: 20px;
-  text-decoration: none;
-}
-.navbar {
+  left: 0;
+  margin-left: 1em;
+  height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
-.menu {
-  display: flex;
-  flex-direction: row;
-}
-.menu li {
-  list-style: none;
-}
-.menu li a {
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
   display: block;
-  text-decoration: none;
-  color: var(--text-colour);
-  padding: 1em 1.5em;
-  font-size: 1rem;
-}
-.--dropdown {
+  background: white;
+  height: 2px;
+  width: 2em;
+  border-radius: 2px;
   position: relative;
 }
-.submenu {
+
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+  content: '';
   position: absolute;
+}
+
+.nav-toggle-label span::before {
+  bottom: 7px;
+}
+
+.nav-toggle-label span::after {
+  top: 7px;
+}
+
+nav {
+  position: absolute;
+  text-align: left;
+  top: 100%;
   left: 0;
-  background-color: var(--background-if-hovered);
-  padding: 1.5em 0;
-  min-width: 16em;
-  opacity: 0;
-  transform: scaleY(0);
-  transform-origin: top center;
-}
-.submenu > li > a {
-  padding: 0.8em 1.5em;
-}
-.submenu .submenu {
-  left: -100%;
-  top: 0;
-}
-.submenu .submenu .submenu {
-  left: -100%;
-  top: 0;
+  background: var(--background);
+  width: 100%;
+  transform: scale(1, 0);
+  transform-origin: top;
+  transition: transform 400ms ease-in-out;
 }
 
-.menu > li:hover > a,
-.submenu > li:hover > a {
-  background-color: hsla(0, 0%, 100%, 0.05);
-  color: var(--text-if-hovered);
-}
-.menu > li:hover > a {
-  background-color: var(--background-if-hovered);
-}
-.arrow {
-  width: 0.5em;
-  height: 0.5em;
-  display: inline-block;
-  vertical-align: middle;
-  border-left: 0.15em solid currentColor;
-  border-bottom: 0.15em solid currentColor;
-  transform: rotate(-45deg);
-  margin-top: -0.25em;
-  transition: transform 100ms ease-in-out;
-}
-.menu > li:hover > a + .submenu,
-.submenu > li:hover > a + .submenu {
-  opacity: 1;
-  transform: scaleY(1);
-}
-.menu > li:hover > a > .arrow,
-.submenu > li:hover > a > .arrow {
-  transform: rotate(225deg);
-}
-
-/*Footer Code*/
-footer{
-  display: grid;
-  font-size: 14px;
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  flex-flow: row wrap;
-  padding: 50px;
-  color: #fff;
-  background-color: var(--footer-colour);
-}
-.footer > *{
-  flex: 1 100%;
-}
-.footer-left{
-  margin-right: 1.25em;
-  margin-bottom: 2em;
-}
-.footer-left img{
-  width:  80%;/*width for img*/
-}
-h2{
-  font-weight: 600;
-  font-size: 17px;
-}
-.footer ul{
+nav ul {
+  margin: 0;
+  padding: 0;
   list-style: none;
-  padding-left: 0;
+  left: auto;
+  right: 1%;
 }
-.footer li{
-  line-height: 2em;
+
+nav li {
+  margin-bottom: 0em;
+  margin-left: auto;
 }
-.footer a{
+
+nav a {
+  color: white;
   text-decoration: none;
+  font-size: 1.2rem;
+  opacity: 0;
+  transition: opacity 150ms ease-in-out;
+  font-family: cursive;
 }
-.footer-right{
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  flex-flow: row wrap;
-}
-.footer-right > * {
-  flex: 1 50%;
-  margin-right: 1.25em;
-  margin-top: 20px;
-}
-.box a{
-  color: var(--colour-for-footer);
-}
-.footer-bottom{
-  text-align: center;
-  color: var(--colour-for-footer);
-  padding-top: 50px;
-}
-.footer-left p{
-  padding-right: 20%;
-  color: var(--colour-for-footer);
-}
-.socials a{
-  background: var(--socials-colour);
-  width: 40px;
-  height: 40px;
-  display: inline-block;
-  margin-right: 10px;
-}
-.socials a img{
-  padding: 10px 12px;
-  font-size: 20px;
-  width: 60px;
-  margin-left: -10px;
-  margin-top: -8px;
-}
-main{
-  display: -webkit-flex;
-  display: -moz-flex;
-  display: -ms-flex;
-  display: -o-flex;
-  display: flex;
-  margin-bottom: 20px;
-}
-.footer-right h2{
-  margin-bottom: 10px;
-}
-.logo{
-  margin-bottom: 10px;
-}
-/*Responsive Code for NAVBAR*/
 
-@media only screen and (max-width: 2000px) {
-  header {
-    padding: 1.5em 2em;
-  }
-  .menu {
-    flex-flow: column;
-    position: absolute;
-    background: var(--text-colour);
-    top: 4.55em;
-    left: 0;
-    right: 0;
-    height: 100vh;
+nav a:hover {
+  color: #000;
+}
 
-    opacity: 0;
-    transform: scaleY(0);
-    transform-origin: top center;
-    transition: 200ms transform cubic-bezier(0.36, 0.4, 0.42, 1.48) 100ms,
-      100ms opacity ease-in-out;
+.nav-toggle:checked ~ nav {
+  transform: scale(1,1);
+}
 
-    overflow-y: scroll;
-
-  }
-  .menu > li > a {
-    font-size: 1rem;
-    color: var(--background-if-hovered);
-  }
-  .submenu > li > a {
-    font-size: 1rem;
-  }
-
-  .submenu {
-    top: 0;
-    padding-left: 1.5em;
-  }
-  .submenu .submenu {
-    left: 0;
-    top: 0;
-  }
-  .submenu .submenu .submenu {
-    left: 0;
-    top: 0;
-  }
-
-  .menu > li:hover > a + .submenu,
-  .submenu > li:hover > a + .submenu {
-    position: relative;
-  }
-
-  .lines {
-    width: 2em;
-    height: 0.25em;
-    display: block;
-    background: var(--text-colour);
-    position: relative;
-    cursor: pointer;
-    transition: 0.2s transform ease-in-out;
-  }
-  .lines::after,
-  .lines::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    background: inherit;
-    width: inherit;
-    height: inherit;
-
-    transition: 0.2s transform ease-in-out;
-  }
-
-  .lines::after {
-    top: 0.65em;
-  }
-  .lines::before {
-    bottom: 0.65em;
-  }
-
-  .close::after,
-  .close::before {
-    top: 0;
-    transition: 0.2s transform ease-in-out;
-  }
-  .close::before {
+.nav-toggle:checked ~ nav a {
+  opacity: 1;
+  transition: opacity 250ms ease-in-out 250ms;
+}
+.container{
+	max-width: 1170px;
+	margin:auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+}
+ul{
+	list-style: none;
+}
+/*Footer Code*/
+.footer{
+	background-color: #24262b;
+    padding: 70px 0;
+}
+.footer-col{
+   width: 25%;
+   padding: 0 15px;
+}
+.footer-col h4{
+	font-size: 18px;
+	color: #ffffff;
+	text-transform: capitalize;
+	margin-bottom: 35px;
+	font-weight: 500;
+	position: relative;
+}
+.footer-col h4::before{
+	content: '';
+	position: absolute;
+	left:0;
+	bottom: -10px;
+	background-color: #e91e63;
+	height: 2px;
+	box-sizing: border-box;
+	width: 50px;
+}
+.footer-col ul li:not(:last-child){
+	margin-bottom: 10px;
+}
+.footer-col ul li a{
+	font-size: 16px;
+	text-transform: capitalize;
+	color: #ffffff;
+	text-decoration: none;
+	font-weight: 300;
+	color: #bbbbbb;
+	display: block;
+	transition: all 0.3s ease;
+}
+.footer-col ul li a:hover{
+	color: #ffffff;
+	padding-left: 8px;
+}
+.footer-col .social-links a{
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	background-color: rgba(255,255,255,0.2);
+	margin:0 10px 10px 0;
+	text-align: center;
+	line-height: 40px;
+	border-radius: 50%;
+	color: #ffffff;
+	transition: all 0.5s ease;
+}
+.social-links a img{
+	width: 40px;
+	height: 40px;
+}
+@media screen and (min-width: 1642px) {
+  .nav-toggle-label {
     display: none;
   }
-  .close {
-    transform: rotate(45deg);
-    transition: 0.2s transform ease-in-out;
-  }
-  .close::after {
-    transform: rotate(-90deg);
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
   }
 
-  input[type="checkbox"]:checked + .menu {
-    position: absolute;
+  .logo {
+    grid-column: 1 / 2;
+  }
+
+  nav {
+    // all: unset; /* this causes issues with Edge, since it's unsupported */
+
+    /* the following lines are not from my video, but add Edge support */
+    position: relative;
+    text-align: left;
+    transition: none;
+    transform: scale(1,1);
+    background: none;
+    top: initial;
+    left: initial;
+    /* end Edge support stuff */
+
+    grid-column: 2 / 5;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+
+  nav a {
     opacity: 1;
-    transform: scaleY(1);
+    position: relative;
+  }
+
+  nav a::before {
+    content: '';
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    top: -.75em;
+    left: 0;
+    right: 0;
+    transform: scale(0, 1);
+    transition: transform ease-in-out 250ms;
+  }
+
+  nav a:hover::before {
+    transform: scale(1,1);
   }
 }
-/*Responsive code for Footer*/
-@media screen and (min-width: 600px) {
-  .footer-right > *{
-    flex: 1;
+@media screen and (max-width: 1024px) {
+  nav ul li a{
+    font-size: 30px;
   }
-  .footer-left{
-    flex: 1 0px;
+  .logo{
+    font-size: 50px;
   }
-  .footer-right{
-    flex: 2 0px;
-  }
+}
+@media(max-width: 767px){
+  .footer-col{
+    width: 50%;
+    margin-bottom: 30px;
+}
+}
+@media(max-width: 574px){
+  .footer-col{
+    width: 100%;
+}
 }
